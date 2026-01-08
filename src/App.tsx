@@ -43,6 +43,15 @@ const curtainVariants = {
 
 function AppContent({ isLoaded }: { isLoaded: boolean }) {
   const location = useLocation();
+  
+  // Map pathname to route pattern for SpeedInsights
+  // This groups dynamic routes (e.g., /services/yoga → /services/:slug)
+  const getRoutePattern = (pathname: string) => {
+    if (pathname.startsWith('/services/') && pathname !== '/services') {
+      return '/services/:slug';
+    }
+    return pathname;
+  };
 
   return (
     <>
@@ -92,6 +101,9 @@ function AppContent({ isLoaded }: { isLoaded: boolean }) {
           </Layout>
         </motion.div>
       </AnimatePresence>
+      
+      {/* Speed Insights with route pattern for proper metrics grouping */}
+      <SpeedInsights route={getRoutePattern(location.pathname)} />
     </>
   );
 }
@@ -104,7 +116,6 @@ export default function App() {
       <Preloader onComplete={() => setIsLoaded(true)} />
       <AppContent isLoaded={isLoaded} />
       <Analytics />
-      <SpeedInsights />
     </BrowserRouter>
   );
 }
