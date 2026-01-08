@@ -41,17 +41,17 @@ const curtainVariants = {
   }
 };
 
+// Map pathname to route pattern for analytics
+// This groups dynamic routes (e.g., /services/yoga → /services/:slug)
+const getRoutePattern = (pathname: string) => {
+  if (pathname.startsWith('/services/') && pathname !== '/services') {
+    return '/services/:slug';
+  }
+  return pathname;
+};
+
 function AppContent({ isLoaded }: { isLoaded: boolean }) {
   const location = useLocation();
-  
-  // Map pathname to route pattern for SpeedInsights
-  // This groups dynamic routes (e.g., /services/yoga → /services/:slug)
-  const getRoutePattern = (pathname: string) => {
-    if (pathname.startsWith('/services/') && pathname !== '/services') {
-      return '/services/:slug';
-    }
-    return pathname;
-  };
 
   return (
     <>
@@ -115,7 +115,14 @@ export default function App() {
     <BrowserRouter>
       <Preloader onComplete={() => setIsLoaded(true)} />
       <AppContent isLoaded={isLoaded} />
-      <Analytics />
+      <Analytics 
+        beforeSend={(event) => {
+          // Normalize dynamic routes to patterns for better grouping
+          const url = new URL(event.url);
+          url.pathname = getRoutePattern(url.pathname);
+          return { ...event, url: url.toString() };
+        }}
+      />
     </BrowserRouter>
   );
 }
