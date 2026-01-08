@@ -1,6 +1,8 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Layout } from './components/layout/Layout';
 import { Preloader } from './components/layout/Preloader';
 import TransitionDesktop from './imports/TransitionDesktop';
@@ -101,6 +103,8 @@ export default function App() {
     <BrowserRouter>
       <Preloader onComplete={() => setIsLoaded(true)} />
       <AppContent isLoaded={isLoaded} />
+      <Analytics />
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
