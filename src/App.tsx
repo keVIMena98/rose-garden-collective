@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { Toaster } from './components/ui/sonner';
 import { Layout } from './components/layout/Layout';
 import { Preloader } from './components/layout/Preloader';
+import ScrollToTop from './components/layout/ScrollToTop';
 import TransitionDesktop from './imports/TransitionDesktop';
 import './lib/storyblok';
 
@@ -129,6 +130,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Preloader onComplete={() => setIsLoaded(true)} />
       <AppContent isLoaded={isLoaded} />
       <Toaster richColors position="top-center" />
