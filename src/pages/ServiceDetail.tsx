@@ -104,7 +104,7 @@ export default function ServiceDetail() {
                   <h1 className="text-3xl md:text-5xl font-serif font-bold text-white mb-2 leading-tight">
                     {service.title}
                   </h1>
-                  <p className="text-white/90 text-lg md:text-xl font-sans max-w-2xl">
+                  <p className="text-[24px] text-white/90 text-lg md:text-xl font-sans max-w-2xl">
                     {service.description}
                   </p>
                </div>
@@ -117,7 +117,7 @@ export default function ServiceDetail() {
                   {service.fullDescription ? (
                     <div dangerouslySetInnerHTML={{ __html: service.fullDescription }} />
                   ) : (
-                    <p>{service.description}</p>
+                    <p className="text-[24px]">{service.description}</p>
                   )}
                </div>
             </div>
@@ -133,7 +133,7 @@ export default function ServiceDetail() {
                      </div>
                      <h3 className="font-serif font-bold text-lg">In-Person Studio</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-[24px] text-sm text-muted-foreground leading-relaxed">
                     Join us at our sanctuary. All mats, props, and amenities are provided for your comfort.
                   </p>
                </div>
@@ -145,7 +145,7 @@ export default function ServiceDetail() {
                      </div>
                      <h3 className="font-serif font-bold text-lg">Virtual Option</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-[24px] text-sm text-muted-foreground leading-relaxed">
                     Connect from anywhere via Zoom. A link will be sent to your email upon booking.
                   </p>
                </div>
@@ -163,7 +163,7 @@ export default function ServiceDetail() {
              {/* Booking Card */}
              <div className="bg-card text-card-foreground p-6 md:p-8 rounded-3xl shadow-lg border border-border">
                 <div className="mb-6">
-                   <p className="text-sm text-muted-foreground font-mono uppercase tracking-wider mb-1">Session Rate</p>
+                   <p className="text-[24px] text-sm text-muted-foreground font-mono uppercase tracking-wider mb-1">Session Rate</p>
                    <div className="flex items-baseline gap-2">
                       <span className="text-4xl font-serif font-bold text-primary">{service.price}</span>
                       <span className="text-muted-foreground">/ session</span>
@@ -196,7 +196,7 @@ export default function ServiceDetail() {
                        <span className="text-muted-foreground line-through text-sm decoration-primary/50">${packagePricing.original}</span>
                        <span className="text-2xl font-bold text-foreground">${packagePricing.discounted}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground mb-4">
+                    <p className="text-[24px] text-xs text-muted-foreground mb-4">
                       Commit to your journey and save. Valid for 6 months from purchase date.
                     </p>
                     <Button variant="outline" className="w-full rounded-full border-primary/20 hover:bg-primary/5 hover:text-primary">
@@ -213,7 +213,7 @@ export default function ServiceDetail() {
                 </div>
                 <div>
                    <h4 className="font-bold text-sm font-sans">Satisfaction Guarantee</h4>
-                   <p className="text-xs text-muted-foreground mt-1">
+                   <p className="text-[24px] text-xs text-muted-foreground mt-1">
                      We are committed to holding a safe and supportive space for you.
                    </p>
                 </div>

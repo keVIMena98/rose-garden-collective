@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
 import { motion, useScroll, useTransform } from 'motion/react';
-import imgHeroVideo from "figma:asset/a1dcf49fd76d3652a41b6d3d24348be9357a348b.png";
+import imgHeroVideo from "../assets/IMG_5130.webp";
 import imgVector from "figma:asset/defa65722715cfc029f694f88465b9b4807536a7.png";
 import imgVector1 from "figma:asset/c20dbc58d2ed6114e8fe3b0aec55d205da37c7da.png";
 import { GrainyOverlay } from '../components/layout/GrainyOverlay';
@@ -74,7 +74,7 @@ export default function Story() {
                      <h2 className="font-serif text-5xl md:text-[64px] leading-[1.2] text-primary">
                        What Is Rose Garden Collective?
                      </h2>
-                     <p className="font-sans font-semibold text-lg md:text-[16px] leading-[1.5] text-foreground/80">
+                     <p className="text-[24px] font-sans font-semibold text-lg md:text-[16px] leading-[1.5] text-foreground/80">
                        Rose Garden is a spiritual space that centers healing regardless of the cost. We partner with many non-profit organizations in the community to offer yoga and Reiki to their communities, and deliver yoga classes in the greater community to build awareness. Building community is at the heart of what we do, and every person, whether a giver or receiver is integral to delivering the mission.
                      </p>
                   </div>
@@ -85,7 +85,7 @@ export default function Story() {
             </RevealSection>
 
             {/* 3. Mission and Values */}
-            <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden">
+            {/* <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden">
                <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-12">
                   <h2 className="font-serif text-5xl md:text-[64px] text-center text-primary">
                     Mission and Values
@@ -93,42 +93,42 @@ export default function Story() {
                   <div className="grid md:grid-cols-3 gap-8 w-full">
                      <div className="p-8 bg-card rounded-2xl shadow-sm border border-primary/10 flex flex-col gap-4">
                         <h3 className="font-serif text-3xl text-primary">Healing for All</h3>
-                        <p className="font-sans text-card-foreground/80">
+                        <p className="text-[24px] font-sans text-card-foreground/80">
                           We believe healing practices should be accessible to everyone, regardless of their financial situation or background.
                         </p>
                      </div>
                      <div className="p-8 bg-card rounded-2xl shadow-sm border border-primary/10 flex flex-col gap-4">
                         <h3 className="font-serif text-3xl text-primary">Community First</h3>
-                        <p className="font-sans text-card-foreground/80">
+                        <p className="text-[24px] font-sans text-card-foreground/80">
                           Connection is our medicine. We build supportive networks that empower individuals to grow and heal together.
                         </p>
                      </div>
                      <div className="p-8 bg-card rounded-2xl shadow-sm border border-primary/10 flex flex-col gap-4">
                         <h3 className="font-serif text-3xl text-primary">Trauma-Informed</h3>
-                        <p className="font-sans text-card-foreground/80">
+                        <p className="text-[24px] font-sans text-card-foreground/80">
                           Our practices are grounded in safety, choice, and empowerment, honoring the lived experiences of every student.
                         </p>
                      </div>
                   </div>
                </div>
-            </RevealSection>
+            </RevealSection> */}
 
             {/* 4. Our History */}
-            <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden">
+            {/* <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden">
                <div className="relative z-10 max-w-[1000px] mx-auto flex flex-col items-center text-center gap-8">
                   <h2 className="font-serif text-5xl md:text-[64px] text-primary">
                     Our History
                   </h2>
                   <div className="prose prose-lg text-foreground/80 max-w-none">
-                     <p className="text-xl md:text-2xl font-medium">
+                     <p className="text-[24px] text-xl md:text-2xl font-medium">
                        From humble beginnings to a growing movement.
                      </p>
-                     <p>
+                     <p className="text-[24px]">
                        Rose Garden Collective started as a seed of an idea—a desire to bridge the gap between wellness and accessibility. What began as small community classes in local parks has blossomed into a collective of teachers, healers, and students dedicated to mutual support. We have partnered with local non-profits, schools, and community centers to bring the benefits of yoga and Reiki to those who need it most.
                      </p>
                   </div>
                </div>
-            </RevealSection>
+            </RevealSection> */}
 
             {/* 5. The Garden Founder */}
             <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden">
@@ -141,7 +141,7 @@ export default function Story() {
                         <h2 className="font-serif text-5xl md:text-[64px] leading-[1.2] text-primary">
                           The Garden Founder
                         </h2>
-                        <p className="font-sans font-semibold text-lg md:text-[16px] leading-[1.5] text-foreground/80">
+                        <p className="text-[24px] font-sans font-semibold text-lg md:text-[16px] leading-[1.5] text-foreground/80">
                           Hi, my name is Chloe. I founded Rose Garden Collective as a former high school educator and yoga instructor who is deeply passionate about community well-being and social justice. My mission is to share healing practices such as yoga and Reiki with anyone who seeks them, regardless of the cost. I specialize in trauma-informed yoga therapy, which dives more deeply into the emotional, spiritual, and mental levels of yoga rather than just the physical. In my classes, we focus on body awareness, building mindfulness techniques, and coming "home" to our bodies through breathing techniques, soft movement, and meditations.
                         </p>
                      </div>
@@ -158,7 +158,7 @@ export default function Story() {
             </RevealSection>
 
             {/* 6. Our Core Team */}
-            <RevealSection className="relative w-full py-24 px-6 md:px-12 text-card-foreground overflow-hidden">
+            {/* <RevealSection className="relative w-full py-24 px-6 md:px-12 text-card-foreground overflow-hidden">
                <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-16">
                   <h2 className="font-serif text-5xl md:text-[64px] text-center text-primary">
                     Our Core Team
@@ -171,16 +171,16 @@ export default function Story() {
                           </div>
                           <div className="text-center">
                              <h3 className="font-serif text-2xl mb-1">Team Member</h3>
-                             <p className="font-sans text-sm font-bold tracking-wider uppercase text-primary">Role Title</p>
+                             <p className="text-[24px] font-sans text-sm font-bold tracking-wider uppercase text-primary">Role Title</p>
                           </div>
                        </div>
                      ))}
                   </div>
                </div>
-            </RevealSection>
+            </RevealSection> */}
 
             {/* 7. Meet Our Teachers */}
-            <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden pb-32">
+            {/* <RevealSection className="relative w-full py-24 px-6 md:px-12 overflow-hidden pb-32">
                <div className="relative z-10 max-w-[1280px] mx-auto flex flex-col items-center gap-16">
                   <h2 className="font-serif text-5xl md:text-[64px] text-center text-primary">
                     Meet Our Teachers
@@ -193,7 +193,7 @@ export default function Story() {
                           </div>
                           <div className="text-center space-y-3">
                              <h3 className="font-serif text-3xl text-primary">Teacher Name</h3>
-                             <p className="font-sans font-medium text-foreground/70">
+                             <p className="text-[24px] font-sans font-medium text-foreground/70">
                                Specializing in Hatha, Vinyasa, and Trauma-Informed Yoga.
                              </p>
                           </div>
@@ -201,7 +201,7 @@ export default function Story() {
                      ))}
                   </div>
                </div>
-            </RevealSection>
+            </RevealSection> */}
         </div>
       </div>
     </div>

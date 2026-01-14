@@ -70,7 +70,7 @@ export default function KarmaClub() {
         
         {/* Intro */}
         <RevealSection className="py-24 px-6 md:px-12 text-center">
-            <p className="text-2xl md:text-3xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-serif">
+            <p className="text-[24px] text-2xl md:text-3xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-serif">
               Join the Karma Club to deepen your practice and help us cultivate a community where everyone can bloom.
             </p>
         </RevealSection>
@@ -80,12 +80,12 @@ export default function KarmaClub() {
            <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               <div className="space-y-8 order-2 md:order-1">
                  <h2 className="font-serif text-4xl md:text-6xl text-primary">Donate to Our Cause</h2>
-                 <p className="text-lg text-muted-foreground leading-relaxed">
+                 <p className="text-[24px] text-lg text-muted-foreground leading-relaxed">
                    Not ready for a membership but still want to make an impact? Your donation directly supports our sliding-scale programs and community outreach initiatives, bringing wellness to those who need it most.
                  </p>
                  <div className="p-6 bg-[var(--card)] rounded-2xl border border-[var(--border)]">
                     <h3 className="font-bold text-xl mb-2">Impact Fund</h3>
-                    <p className="text-sm text-muted-foreground mb-4">One-time contribution to our scholarship fund.</p>
+                    <p className="text-[24px] text-sm text-muted-foreground mb-4">One-time contribution to our scholarship fund.</p>
                     <Button className="w-full md:w-auto rounded-full px-8 py-6 text-lg" asChild>
                       <Link to="/donate">Make a Donation</Link>
                     </Button>
@@ -113,7 +113,7 @@ export default function KarmaClub() {
               </div>
               <div className="space-y-8">
                  <h2 className="font-serif text-4xl md:text-6xl text-primary">Book A Service</h2>
-                 <p className="text-lg text-muted-foreground leading-relaxed">
+                 <p className="text-[24px] text-lg text-muted-foreground leading-relaxed">
                    Ready to step onto the mat? Explore our diverse range of classes, from vigorous Vinyasa to restorative Yin. We also offer private sessions and healing workshops.
                  </p>
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -150,7 +150,7 @@ export default function KarmaClub() {
               <h2 className="font-serif text-4xl md:text-6xl leading-tight">
                 Are you a wellness practitioner and want to give back to the community?
               </h2>
-              <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              <p className="text-[24px] text-xl text-white/90 max-w-2xl mx-auto">
                 We are always looking for passionate teachers, healers, and facilitators to join our collective. Share your gifts and help us grow the garden.
               </p>
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-10 py-8 text-xl font-bold" asChild>
@@ -164,7 +164,7 @@ export default function KarmaClub() {
            <div className="max-w-[1280px] mx-auto">
               <div className="text-center mb-16 space-y-6">
                  <h2 className="font-serif text-4xl md:text-6xl text-primary">Become a Member</h2>
-                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                 <p className="text-[24px] text-xl text-muted-foreground max-w-2xl mx-auto">
                    Choose a plan that fits your journey. Your membership fuels our mission and keeps our doors open to all.
                  </p>
               </div>
@@ -177,7 +177,7 @@ export default function KarmaClub() {
                       <perk.icon size={28} />
                     </div>
                     <h3 className="text-lg font-bold font-serif mb-2">{perk.title}</h3>
-                    <p className="text-muted-foreground text-sm">{perk.desc}</p>
+                    <p className="text-[24px] text-muted-foreground text-sm">{perk.desc}</p>
                   </div>
                 ))}
               </div>
@@ -191,7 +191,7 @@ export default function KarmaClub() {
                      <span className="text-4xl font-bold text-primary">$25</span>
                      <span className="text-muted-foreground">/ month</span>
                    </div>
-                   <p className="text-muted-foreground mb-8">Perfect for steady growth and consistent support.</p>
+                   <p className="text-[24px] text-muted-foreground mb-8">Perfect for steady growth and consistent support.</p>
                    
                    <ul className="space-y-4 mb-8 flex-grow">
                      {["Unlimited Community Classes", "10% Off Workshops", "Monthly Newsletter", "Welcome Gift"].map((item, i) => (
@@ -218,7 +218,7 @@ export default function KarmaClub() {
                      <span className="text-4xl font-bold">$250</span>
                      <span className="text-white/80">/ year</span>
                    </div>
-                   <p className="text-white/80 mb-8">Commit to a full season of growth and get 2 months free.</p>
+                   <p className="text-[24px] text-white/80 mb-8">Commit to a full season of growth and get 2 months free.</p>
                    
                    <ul className="space-y-4 mb-8 flex-grow">
                      {["All Seed Benefits", "20% Off Workshops", "1 Free Private Session", "Exclusive Retreat Access", "Karma Club Tote Bag"].map((item, i) => (

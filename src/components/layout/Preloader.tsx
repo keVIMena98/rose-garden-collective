@@ -150,11 +150,12 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
       <div className="relative size-full px-[5%] py-[65px] flex flex-col z-10 pointer-events-none">
           
           {/* Top: Logo */}
+          {/* Top: Logo - Centered on Mobile & Desktop per user request for Preloader */}
           <motion.div 
               className={cn(
                 "absolute z-[20]",
-                "top-[32px] right-[30px] -translate-y-1/2 w-[105px] h-[36px]",
-                "md:top-[45px] md:left-1/2 md:-translate-x-1/2 md:right-auto md:w-[140px] md:h-[53px]"
+                "top-[32px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105px] h-[36px]", // Mobile: Centered
+                "md:top-[45px] md:w-[140px] md:h-[53px]" // Desktop: Centered (inherited)
               )}
               animate={{ opacity: isRevealing ? 0 : 1 }}
               transition={{ duration: 0.5 }}
@@ -208,16 +209,28 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
               </div>
           </div>
 
+          {/* Mobile Only: Tap to Enter Cue (Since they can't hover) */}
+          <motion.div
+            className="md:hidden absolute top-[calc(50%-150px)] left-1/2 -translate-x-1/2 z-[25] pointer-events-none"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: isRevealing ? 0 : 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+          >
+              <p className="font-serif text-sm font-semibold tracking-widest uppercase text-[#7c3aed] whitespace-nowrap">
+                Tap to enter
+              </p>
+          </motion.div>
+
           {/* Bottom: Text and Copyright */}
           <motion.div 
               className="mt-auto w-full flex flex-col md:flex-row justify-between items-center md:items-end gap-8 relative"
               animate={{ opacity: isRevealing ? 0 : 1 }}
               transition={{ duration: 0.5 }}
           >
-              <p className="font-serif font-semibold text-secondary text-[24px] leading-[1.2] max-w-[501px] text-center md:text-left">
+              <p className="text-[24px] font-serif font-semibold text-secondary text-[24px] leading-[1.2] max-w-[501px] text-center md:text-left">
                   WELCOME TO ROSE GARDEN COLLECTIVE - A SPIRITUAL SPACE FOR COLLECTIVE WELLBEING.
               </p>
-              <p className="font-serif font-semibold text-secondary text-[24px] leading-[1.2] whitespace-nowrap text-center md:text-right">
+              <p className="text-[24px] font-serif font-semibold text-secondary text-[24px] leading-[1.2] whitespace-nowrap text-center md:text-right">
                   © 2025
               </p>
           </motion.div>

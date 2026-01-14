@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 const DEFAULT_TITLE = 'Rose Garden Collective | Trauma-Informed Yoga & Wellness in Cayman Islands';
-const DEFAULT_DESCRIPTION = 'Rose Garden Collective brings trauma-informed yoga, mindfulness, and wellness practices to people in the Cayman Islands who may have little or no access to them. We offer accessible, donation based classes that include yoga flow, breath work, meditation, and self reflection to encourage healing, connection, and collective wellbeing.';
+const DEFAULT_DESCRIPTION = 'Rose Garden Collective is a grassroots organization bringing wellness modalities to all people of the Cayman Islands, regardless of the cost. We are an aspiring non-profit that currently specializes in trauma-informed yoga and Reiki, with much more on the horizon. Join our movement through a donations-based class, or sharing with a friend,We\'re excited to see you on the journey to collective well-being!';
 const SITE_URL = 'https://rosegardencollective.com';
 
 export function SEO({ 

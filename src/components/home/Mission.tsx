@@ -1,17 +1,24 @@
+/// <reference path="../../declarations.d.ts" />
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import svgPaths from '../imports/svg-y5bhm58wor';
-import bgTexture from "figma:asset/5a1ec8ea6c4524e0727a8833d09e55b05b939353.png";
+import { GrainyOverlay } from '../layout/GrainyOverlay';
+import img1 from "../../assets/IMG_0225.webp";
+import img2 from "../../assets/IMG_0231.webp";
+import img3 from "../../assets/IMG_3620.webp";
+import img4 from "../../assets/IMG_0566.webp";
+import img5 from "../../assets/IMG_3626.webp";
+import img6 from "../../assets/IMG_5130.webp";
 import clsx from 'clsx';
 
-// Unsplash placeholders
+// Local Assets
 const IMAGES = [
-  "https://images.unsplash.com/photo-1658752641749-0ece0d559014?q=80&w=400&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1749105862005-6e0409c8c55a?q=80&w=300&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1765477157692-b02b643f0552?q=80&w=300&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1566739594624-b9ff5d8ee671?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1763531564190-93f3af57a4ef?q=80&w=800&auto=format&fit=crop", // Main
-  "https://images.unsplash.com/photo-1758899076209-c1d2c590bc94?q=80&w=400&auto=format&fit=crop"
+  img1, 
+  img2, 
+  img3,
+  img4,
+  img5, // Main
+  img6
 ];
 
 function BushlineRight() {
@@ -101,51 +108,47 @@ export function Mission() {
   const sideOpacity = useTransform(scrollYProgress, [ANIM_START, 0.5], [1, 0]);
 
   // --- MOBILE TRANSFORMS (Matching Figma Layout) ---
-  const mobileMainWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["188px", "100vw"]);
-  const mobileMainHeight = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["542px", "100vh"]);
+  const mobileMainWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["188px", "calc(100vw - 32px)"]);
+  const mobileMainHeight = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["70vh", "calc(100vh - 32px)"]); // Adjusted start height for Image 5 aspect ratio
   const mobileGap = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["16px", "0px"]);
   
   const mobileSideOpacity = useTransform(mobileScrollYProgress, [ANIM_START, 0.5], [1, 0]);
   const mobileLeftWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["112px", "0px"]);
-  const mobileRightWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["150px", "0px"]);
+  const mobileRightWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["112px", "0px"]);
 
   return (
     <section className="relative w-full bg-background">
+      <GrainyOverlay />
 
       {/* MOBILE LAYOUT */}
       <div className="md:hidden flex flex-col gap-[48px] py-[64px] relative z-10 bg-background">
          {/* Text Content */}
-         <div className="flex flex-col gap-[20px] px-[30px] items-start">
-             <h2 className="font-serif text-[36px] leading-[1.2] text-foreground">
+         <div className="flex flex-col gap-[20px] px-[30px] items-center text-center">
+             <h2 className="font-serif text-[36px] leading-[1.2] text-primary">
                 Welcome to Rose Garden Collective
              </h2>
-             <p className="font-sans font-semibold text-[14px] leading-[1.5] text-foreground">
-                We are a grassroots organization bringing mindfulness and care back to its essence of healing, community, and accessibility through classes and workshops.Together, we inspire resilience and change, creating a legacy of empowerment for future generations.
+             <p className="text-[24px] font-sans font-semibold text-[14px] leading-[1.5] text-muted-foreground text-justify">
+                Rose Garden Collective is a grassroots organization bringing wellness modalities to all people of the Cayman Islands, regardless of the cost. We are an aspiring non-profit that currently specializes in trauma-informed yoga and Reiki, with much more on the horizon. Join our movement through a donations-based class, or sharing with a friend,We're excited to see you on the journey to collective well-being!
              </p>
          </div>
          
          {/* Sticky Wrapper */}
-         <div ref={mobileContainerRef} className="relative h-[300vh] w-full">
+         <div ref={mobileContainerRef} className="relative h-[800vh] w-full">
             <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
                 <motion.div style={{ gap: mobileGap }} className="flex items-center justify-center">
                     
-                    {/* Left Col */}
-                    <motion.div style={{ width: mobileLeftWidth, opacity: mobileSideOpacity }} className="flex flex-col gap-[16px] shrink-0 overflow-hidden">
-                       <div className="size-[112px] relative rounded-xl overflow-hidden shrink-0">
-                          <img src={IMAGES[0]} className="size-full object-cover" alt="" />
-                       </div>
-                       <div className="w-[112px] h-[150px] relative rounded-xl overflow-hidden shrink-0">
-                          <img src={IMAGES[1]} className="size-full object-cover" alt="" />
-                       </div>
+                    {/* Left Col - Image 4 */}
+                    <motion.div style={{ width: mobileLeftWidth, opacity: mobileSideOpacity }} className="h-[150px] relative rounded-xl overflow-hidden shrink-0">
+                        <img src={IMAGES[3]} className="size-full object-cover" alt="" />
                     </motion.div>
 
-                    {/* Center */}
+                    {/* Center - Image 5 (Main) */}
                     <motion.div style={{ width: mobileMainWidth, height: mobileMainHeight }} className="relative rounded-xl overflow-hidden shrink-0 shadow-lg origin-center">
                         <img src={IMAGES[4]} className="size-full object-cover" alt="" />
                     </motion.div>
 
-                    {/* Right */}
-                    <motion.div style={{ width: mobileRightWidth, opacity: mobileSideOpacity }} className="w-[150px] h-[200px] relative rounded-xl overflow-hidden shrink-0">
+                    {/* Right - Image 6 */}
+                    <motion.div style={{ width: mobileRightWidth, opacity: mobileSideOpacity }} className="h-[150px] relative rounded-xl overflow-hidden shrink-0">
                         <img src={IMAGES[5]} className="size-full object-cover" alt="" />
                     </motion.div>
 
@@ -158,22 +161,14 @@ export function Mission() {
       <div className="hidden md:block w-full">
         {/* Text Content - Normal Flow (Above Images) */}
         <div className="w-full flex flex-col items-center pt-[112px] px-4 pb-[80px] z-10 relative">
-            <div 
-              className="absolute inset-0 z-[-1] opacity-40 pointer-events-none mix-blend-multiply" 
-              style={{ 
-                backgroundImage: `url(${bgTexture})`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: '300px'
-              }} 
-            />
             <div className="flex flex-col items-center max-w-[1280px] w-full">
-              <div className="flex flex-col items-start max-w-[768px] w-full">
-                <div className="flex flex-col gap-[24px] items-start w-full">
-                  <h2 className="font-serif text-[64px] leading-[1.2] text-primary">
+              <div className="flex flex-col items-start max-w-full w-full">
+                <div className="flex flex-col gap-[24px] items-center text-center w-full">
+                  <h2 className="font-serif text-[64px] leading-[1.1] text-primary tracking-tight">
                     Welcome to Rose Garden Collective
                   </h2>
-                  <p className="font-sans font-semibold text-[16px] leading-[1.5] text-muted-foreground">
-                    We are a grassroots organization bringing mindfulness and care back to its essence of healing, community, and accessibility through classes and workshops. Together, we inspire resilience and change, creating a legacy of empowerment for future generations.
+                  <p className="text-[24px] font-sans font-semibold text-[24px] leading-[1.5] text-muted-foreground max-w-[800px]">
+                    Rose Garden Collective is a grassroots organization bringing wellness modalities to all people of the Cayman Islands, regardless of the cost. We are an aspiring non-profit that currently specializes in trauma-informed yoga and Reiki, with much more on the horizon. Join our movement through a donations-based class, or sharing with a friend,We're excited to see you on the journey to collective well-being!
                   </p>
                 </div>
               </div>
@@ -185,56 +180,99 @@ export function Mission() {
           <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col items-center justify-center bg-background">
             
             {/* Background Elements */}
-            <div className="absolute inset-0 pointer-events-none z-0">
+            {/* <div className="absolute inset-0 pointer-events-none z-0">
                  <BushlineRight />
                  <BushlineLeft />
-            </div>
+            </div> */}
+
+            {/* Grainy Overlay */}
+            <GrainyOverlay />
 
             {/* Images Container */}
             <div className="w-full h-full flex items-center justify-center relative z-20">
-               <div 
-                 className="absolute inset-0 z-[-1] opacity-40 pointer-events-none mix-blend-multiply" 
-                 style={{ 
-                   backgroundImage: `url(${bgTexture})`,
-                   backgroundRepeat: 'repeat',
-                   backgroundSize: '300px'
-                 }} 
-               />
                <motion.div 
                  className="flex items-center justify-center w-full px-4"
                  style={{ maxWidth: containerMaxWidth, gap }}
                >
                   {/* Image 1 */}
-                  <motion.div style={{ width: sideWidth, opacity: sideOpacity }} className="aspect-[316/475] relative rounded-2xl overflow-hidden shrink-0">
-                      <img src={IMAGES[0]} className="w-full h-full object-cover" alt="" />
+                  <motion.div 
+                    style={{ width: sideWidth, opacity: sideOpacity }} 
+                    className="aspect-[316/475] relative rounded-2xl overflow-hidden shrink-0 will-change-[width,opacity] transform-gpu"
+                  >
+                      <img 
+                        src={IMAGES[0]} 
+                        className="w-full h-full object-cover" 
+                        alt="" 
+                        decoding="async"
+                        loading="eager"
+                      />
                   </motion.div>
 
                   {/* Col */}
-                  <motion.div style={{ width: colWidth, opacity: sideOpacity }} className="flex flex-col gap-4 items-center shrink-0">
+                  <motion.div 
+                    style={{ width: colWidth, opacity: sideOpacity }} 
+                    className="flex flex-col gap-4 items-center shrink-0 will-change-[width,opacity] transform-gpu"
+                  >
                       <div className="aspect-square w-full rounded-2xl overflow-hidden relative">
-                          <img src={IMAGES[1]} className="w-full h-full object-cover" alt="" />
+                          <img 
+                            src={IMAGES[1]} 
+                            className="w-full h-full object-cover" 
+                            alt="" 
+                            decoding="async"
+                            loading="eager"
+                          />
                       </div>
                       <div className="aspect-[216/288] w-full rounded-2xl overflow-hidden relative">
-                          <img src={IMAGES[2]} className="w-full h-full object-cover" alt="" />
+                          <img 
+                            src={IMAGES[2]} 
+                            className="w-full h-full object-cover" 
+                            alt="" 
+                            decoding="async"
+                            loading="eager"
+                          />
                       </div>
                   </motion.div>
 
                   {/* Image 4 */}
-                  <motion.div style={{ width: sideWidth, opacity: sideOpacity }} className="aspect-square relative rounded-2xl overflow-hidden shrink-0">
-                      <img src={IMAGES[3]} className="w-full h-full object-cover" alt="" />
+                  <motion.div 
+                    style={{ width: sideWidth, opacity: sideOpacity }} 
+                    className="aspect-square relative rounded-2xl overflow-hidden shrink-0 will-change-[width,opacity] transform-gpu"
+                  >
+                      <img 
+                        src={IMAGES[3]} 
+                        className="w-full h-full object-cover" 
+                        alt="" 
+                        decoding="async"
+                        loading="eager"
+                      />
                   </motion.div>
 
                   {/* MAIN IMAGE (5) - Rounded corners maintained */}
                   <motion.div 
                      style={{ width: mainWidth, height: mainHeight }} 
-                     className="relative overflow-hidden shrink-0 shadow-2xl origin-center rounded-2xl"
+                     className="relative overflow-hidden shrink-0 shadow-2xl origin-center rounded-2xl will-change-[width,height] transform-gpu"
                   >
-                      <img src={IMAGES[4]} className="w-full h-full object-cover" alt="" />
+                      <img 
+                        src={IMAGES[4]} 
+                        className="w-full h-full object-cover" 
+                        alt="" 
+                        decoding="async"
+                        loading="eager"
+                      />
                   </motion.div>
 
                   {/* Image 6 */}
-                  <motion.div style={{ width: sideWidth, opacity: sideOpacity }} className="aspect-[316/422] relative rounded-2xl overflow-hidden shrink-0">
-                      <img src={IMAGES[5]} className="w-full h-full object-cover" alt="" />
+                  <motion.div 
+                    style={{ width: sideWidth, opacity: sideOpacity }} 
+                    className="aspect-[316/422] relative rounded-2xl overflow-hidden shrink-0 will-change-[width,opacity] transform-gpu"
+                  >
+                      <img 
+                        src={IMAGES[5]} 
+                        className="w-full h-full object-cover" 
+                        alt="" 
+                        decoding="async"
+                        loading="eager"
+                      />
                   </motion.div>
 
                </motion.div>

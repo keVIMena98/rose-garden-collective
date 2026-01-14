@@ -17,7 +17,7 @@ export function MenuToggle({ isOpen, color = "currentColor", className }: MenuTo
 
   return (
     <div className={className}>
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={`block w-full h-full ${!isOpen ? 'mix-blend-difference' : ''}`}>
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="block w-full h-full">
         {/* Top Line -> Becomes one diagonal of X */}
         <motion.path
           animate={isOpen ? "open" : "closed"}

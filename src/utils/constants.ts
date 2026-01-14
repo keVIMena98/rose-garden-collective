@@ -1,6 +1,7 @@
 import { Facebook, Instagram, Mail, MapPin } from "lucide-react";
 
 export const NAV_LINKS = [
+  { name: "Home", path: "/" },
   { 
     name: "Who We Are", 
     path: "/who-we-are", 
@@ -21,10 +22,10 @@ export const NAV_LINKS = [
       { name: "Wellness Retreats", path: "/retreats" }
     ] 
   },
-  { name: "Join The Karma Club", path: "/karma-club" },
+  // { name: "Join The Karma Club", path: "/karma-club" },
   { name: "Our Reach", path: "/impact" },
   { name: "Stories Of Impact", path: "/stories-of-impact" },
-  { name: "FAQ", path: "/faq" },
+  { name: "FAQ", path: "/coming-soon" },
   { name: "Contact Us", path: "/contact" },
   { name: "Donate Now", path: "/donate" }
 ];
@@ -35,6 +36,6 @@ export const SOCIAL_LINKS = [
 ];
 
 export const CONTACT_INFO = {
-  email: "hello@rosegarden.com",
+  email: "hello@rosegardencollective.com",
   address: "Cayman Islands",
 };

@@ -55,7 +55,7 @@ export default function Services() {
      return (
        <div className="min-h-screen pt-32 flex flex-col items-center justify-center gap-4 bg-[#d4e5f1]">
          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-         <p className="text-muted-foreground font-mono">Loading...</p>
+         <p className="text-[24px] text-muted-foreground font-mono">Loading...</p>
        </div>
      );
   }

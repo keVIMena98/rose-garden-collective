@@ -37,13 +37,13 @@ export const ServiceCard = ({ service, index }: ServiceCardProps) => {
         <Link to={`/services/${service.slug}`} className="block hover:opacity-80 transition-opacity">
           <h3 className="text-2xl font-serif font-bold text-primary mb-3">{service.title}</h3>
         </Link>
-        <p className="text-muted-foreground text-sm mb-6 leading-relaxed min-h-[60px]">
+        <p className="text-[24px] text-muted-foreground text-sm mb-6 leading-relaxed min-h-[60px]">
           {service.description}
         </p>
         
         <div className="flex items-center justify-center gap-6 mb-6 text-sm font-semibold text-secondary">
           <div className="flex items-center gap-1">
-            <DollarSign size={16} />
+            {/* <DollarSign size={16} /> */}
             <span>{service.price}</span>
           </div>
           <div className="flex items-center gap-1">
@@ -52,12 +52,12 @@ export const ServiceCard = ({ service, index }: ServiceCardProps) => {
           </div>
         </div>
 
-        <Button className="w-full rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-md group/btn gap-2" asChild>
+        {/* <Button className="w-full rounded-full transition-all duration-300 hover:scale-[1.02] hover:shadow-md group/btn gap-2" asChild>
           <Link to={`/services/${service.slug}`}>
             View Details
             <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
           </Link>
-        </Button>
+        </Button> */}
       </div>
 
       {/* Grid Breaker Graphic for specific items */

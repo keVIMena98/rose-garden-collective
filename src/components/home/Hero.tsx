@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import imgHeroVideo from "figma:asset/a1dcf49fd76d3652a41b6d3d24348be9357a348b.png";
+import heroBgImage from '../../assets/IMG_4781.webp';
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -27,18 +27,11 @@ export function Hero() {
            transition={{ duration: 2 }}
            className="w-full h-full"
          >
-           <video
-             autoPlay
-             loop
-             muted
-             playsInline
-             controlsList="nodownload"
+           <img
+             src={heroBgImage}
+             alt="Rose Garden Collective Hero"
              className="w-full h-full object-cover"
-             poster={imgHeroVideo}
-           >
-             <source src="https://drive.google.com/uc?export=download&id=1FykMWFnj04Oya6ytK6zXRlbk_05J57OY" type="video/mp4" />
-             Your browser does not support the video tag.
-           </video>
+           />
          </motion.div>
 
          {/* Scroll Darkening Overlay */}
@@ -59,10 +52,10 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           style={{ 
             x, // Apply the horizontal scroll transform
-            fontSize: 'clamp(3rem, 10vw, 12rem)', 
+            fontSize: 'clamp(5rem, 15vw, 15rem)', // increased min from 3rem to 5rem for larger mobile impact
             textShadow: '0 2px 10px rgba(0,0,0,0.1)'
           }} 
-          className="w-full text-left font-serif font-normal text-primary-foreground leading-none whitespace-normal md:whitespace-nowrap"
+          className="w-full text-left font-serif font-normal text-primary-foreground leading-none whitespace-nowrap"
         >
           ROSE GARDEN COLLECTIVE
         </motion.h1>

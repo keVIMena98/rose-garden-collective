@@ -6,8 +6,9 @@ import { Label } from '../components/ui/label';
 import { Mail, Instagram, ArrowUpRight } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { GrainyOverlay } from '../components/layout/GrainyOverlay';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { SEO, SEO_CONFIG } from '../components/SEO';
+import contactHeroImg from '../assets/IMG_0225.webp';
 
 // Helper for scroll-triggered reveal animations
 function RevealSection({ children, className }: { children: React.ReactNode, className?: string }) {
@@ -24,6 +25,22 @@ function RevealSection({ children, className }: { children: React.ReactNode, cla
   );
 }
 
+// Define the form schema
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../components/ui/form';
+
+const formSchema = z.object({
+  firstName: z.string().min(2, "First name is required"),
+  lastName: z.string().min(2, "Last name is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
 export default function Contact() {
   const containerRef = useRef(null);
   const { scrollY } = useScroll();
@@ -32,13 +49,61 @@ export default function Contact() {
   const bgY = useTransform(scrollY, [0, 1000], [0, 1000]); 
   const titleY = useTransform(scrollY, [0, 1000], [0, 400]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate submission
-    toast.success("Message Sent", {
-      description: "Thank you for reaching out! We'll get back to you soon.",
-    });
-    // In a real app, this would send to Supabase or an API
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [hasSubmitted, setHasSubmitted] = React.useState(false);
+
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    try {
+      // TODO: Replace with your actual Formspree endpoint or API URL
+      // Example: "https://formspree.io/f/xyzkqwer"
+      const ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; 
+      
+      // For now, we simulate a success if no endpoint is set, 
+      // but warn in console users need to configure it.
+      if (ENDPOINT.includes("YOUR_FORM_ID")) {
+        console.warn("⚠️ Contact Form: Please configure your Formspree endpoint in Contact.tsx");
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      } else {
+         const response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data),
+        });
+        
+        if (!response.ok) {
+           throw new Error("Failed to send message");
+        }
+      }
+
+      toast.success("Message Sent", {
+        description: "Thank you for reaching out! We'll get back to you soon.",
+      });
+      setHasSubmitted(true);
+      form.reset();
+    } catch (error) {
+      console.error("Contact Error:", error);
+      toast.error("Error sending message", {
+        description: "Please try again later or email us directly.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,7 +117,7 @@ export default function Contact() {
            className="absolute inset-0 w-full h-full -z-20"
          >
            <img 
-             src="https://images.unsplash.com/photo-1760720962321-f03e04a03b41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3cml0aW5nJTIwbGV0dGVyJTIwZGVzayUyMGFlc3RoZXRpY3xlbnwxfHx8fDE3NjYyNDk4ODV8MA&ixlib=rb-4.1.0&q=80&w=1080"
+             src={contactHeroImg}
              className="w-full h-full object-cover" 
              alt="Contact Hero" 
            />
@@ -94,7 +159,7 @@ export default function Contact() {
                        <h3 className="font-serif text-4xl leading-tight text-primary">
                           Contact Us
                        </h3>
-                       <p className="text-lg opacity-80 max-w-sm font-light leading-relaxed">
+                       <p className="text-[24px] text-lg opacity-80 max-w-sm font-light leading-relaxed">
                           Let's talk. Whatever you need, we're ready to help.
                        </p>
                     </div>
@@ -110,10 +175,10 @@ export default function Contact() {
                        <div className="flex flex-col gap-1">
                           <span className="opacity-60 text-base">Socials:</span>
                           <div className="flex gap-6 pt-1">
-                             <a href="#" className="font-bold hover:text-primary transition-colors flex items-center gap-2">
+                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary transition-colors flex items-center gap-2">
                                 INSTAGRAM
                              </a>
-                             <a href="#" className="font-bold hover:text-primary transition-colors flex items-center gap-2">
+                             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-primary transition-colors flex items-center gap-2">
                                 FACEBOOK
                              </a>
                           </div>
@@ -124,60 +189,132 @@ export default function Contact() {
 
               {/* Right Col: Form */}
               <RevealSection className="md:mt-4">
-                 <form onSubmit={handleSubmit} className="space-y-12">
-                    <div className="grid gap-10">
-                       
-                       {/* Name Row */}
-                       <div className="grid grid-cols-2 gap-8">
-                         <div className="space-y-3">
-                            <Label htmlFor="firstName" className="text-sm uppercase tracking-wider opacity-60">First Name</Label>
-                            <Input 
-                              id="firstName" 
-                              className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                 <Form {...form}>
+                    {hasSubmitted ? (
+                      <div className="flex flex-col items-center justify-center p-8 text-center space-y-6 bg-card/50 border border-primary/20 rounded-lg animate-in fade-in duration-500">
+                        <div className="size-20 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                           <Mail className="size-10" />
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="font-serif text-3xl text-primary">Message Sent!</h3>
+                          <p className="text-lg opacity-80 max-w-sm">
+                            Thank you for reaching out. We will get back to you as soon as possible.
+                          </p>
+                        </div>
+                        <Button 
+                          onClick={() => setHasSubmitted(false)}
+                          variant="outline"
+                          className="mt-4 border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
+                        >
+                          Send Another Message
+                        </Button>
+                      </div>
+                    ) : (
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12">
+                       <div className="grid gap-10">
+                          
+                          {/* Name Row */}
+                          <div className="grid grid-cols-2 gap-8">
+                            <FormField
+                              control={form.control}
+                              name="firstName"
+                              render={({ field }) => (
+                                <FormItem className="space-y-3">
+                                  <FormLabel className="text-sm uppercase tracking-wider opacity-60">First Name</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                                      {...field}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
-                         </div>
-                         <div className="space-y-3">
-                            <Label htmlFor="lastName" className="text-sm uppercase tracking-wider opacity-60">Last Name</Label>
-                            <Input 
-                              id="lastName" 
-                              className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                            <FormField
+                              control={form.control}
+                              name="lastName"
+                              render={({ field }) => (
+                                <FormItem className="space-y-3">
+                                  <FormLabel className="text-sm uppercase tracking-wider opacity-60">Last Name</FormLabel>
+                                  <FormControl>
+                                    <Input 
+                                      className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                                      {...field}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
                             />
-                         </div>
-                       </div>
+                          </div>
 
-                       <div className="space-y-3">
-                          <Label htmlFor="email" className="text-sm uppercase tracking-wider opacity-60">Your Email</Label>
-                          <Input 
-                            id="email" 
-                            type="email" 
-                            className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormLabel className="text-sm uppercase tracking-wider opacity-60">Your Email</FormLabel>
+                                <FormControl>
+                                  <Input 
+                                    type="email" 
+                                    className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormLabel className="text-sm uppercase tracking-wider opacity-60">Your Phone No</FormLabel>
+                                <FormControl>
+                                  <Input 
+                                    type="tel" 
+                                    className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                              <FormItem className="space-y-3">
+                                <FormLabel className="text-sm uppercase tracking-wider opacity-60">Your Message</FormLabel>
+                                <FormControl>
+                                  <Textarea 
+                                    className="bg-transparent border-primary/30 focus:border-primary min-h-[100px] resize-none text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
                           />
                        </div>
 
-                       <div className="space-y-3">
-                          <Label htmlFor="phone" className="text-sm uppercase tracking-wider opacity-60">Your Phone No</Label>
-                          <Input 
-                            id="phone" 
-                            type="tel" 
-                            className="bg-transparent border-primary/30 focus:border-primary h-10 text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
-                          />
+                       <div className="pt-4">
+                         <Button 
+                           type="submit" 
+                           disabled={isSubmitting}
+                           className="w-full md:w-auto px-12 py-8 rounded-full text-xl shadow-lg hover:bg-card hover:text-card-foreground transition-colors"
+                         >
+                            {isSubmitting ? "Sending..." : "Send Message"}
+                         </Button>
                        </div>
-
-                       <div className="space-y-3">
-                          <Label htmlFor="message" className="text-sm uppercase tracking-wider opacity-60">Your Message</Label>
-                          <Textarea 
-                            id="message" 
-                            className="bg-transparent border-primary/30 focus:border-primary min-h-[100px] resize-none text-lg rounded-none border-t-0 border-x-0 border-b px-0 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/30" 
-                          />
-                       </div>
-                    </div>
-
-                    <div className="pt-4">
-                      <Button type="submit" className="w-full md:w-auto px-12 py-8 rounded-full text-xl shadow-lg hover:shadow-xl hover:-translate-y-1">
-                         Send Message
-                      </Button>
-                    </div>
-                 </form>
+                    </form>
+                    )}
+                 </Form>
               </RevealSection>
 
            </div>

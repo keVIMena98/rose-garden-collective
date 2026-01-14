@@ -1,8 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Toaster } from './components/ui/sonner';
 import { Layout } from './components/layout/Layout';
 import { Preloader } from './components/layout/Preloader';
 import TransitionDesktop from './imports/TransitionDesktop';
@@ -16,10 +15,23 @@ const Services = lazy(() => import('./pages/Services'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 const KarmaClub = lazy(() => import('./pages/KarmaClub'));
 const Contact = lazy(() => import('./pages/Contact'));
-const FAQ = lazy(() => import('./pages/FAQ'));
+const Donate = lazy(() => import('./pages/Donate'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+
+// New Pages
+const FounderStory = lazy(() => import('./pages/FounderStory'));
+const CareTeam = lazy(() => import('./pages/CareTeam'));
+const Teachers = lazy(() => import('./pages/Teachers'));
+const TeacherProfile = lazy(() => import('./pages/TeacherProfile')); 
+const Careers = lazy(() => import('./pages/Careers'));
+const Vacancy = lazy(() => import('./pages/Vacancy'));
+const Retreats = lazy(() => import('./pages/Retreats'));
+const RetreatDetail = lazy(() => import('./pages/RetreatDetail'));
+const ApplicationReceived = lazy(() => import('./pages/ApplicationReceived'));
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess'));
+const PaymentDeclined = lazy(() => import('./pages/PaymentDeclined'));
 
 const curtainVariants = {
   initial: { 
@@ -39,15 +51,6 @@ const curtainVariants = {
     maskImage: 'radial-gradient(circle at center, transparent 0%, transparent 0%, black 0%, black 100%)',
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
   }
-};
-
-// Map pathname to route pattern for analytics
-// This groups dynamic routes (e.g., /services/yoga → /services/:slug)
-const getRoutePattern = (pathname: string) => {
-  if (pathname.startsWith('/services/') && pathname !== '/services') {
-    return '/services/:slug';
-  }
-  return pathname;
 };
 
 function AppContent({ isLoaded }: { isLoaded: boolean }) {
@@ -86,9 +89,25 @@ function AppContent({ isLoaded }: { isLoaded: boolean }) {
                 <Route path="/programs" element={<Programs />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/services/:slug" element={<ServiceDetail />} />
-                <Route path="/karma-club" element={<KarmaClub />} />
-                <Route path="/faq" element={<FAQ />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/donate" element={<Donate />} />
+
+                {/* Who We Are */}
+                <Route path="/founder-story" element={<FounderStory />} />
+                <Route path="/care-team" element={<CareTeam />} />
+                <Route path="/teachers" element={<Teachers />} />
+                <Route path="/teachers/:slug" element={<TeacherProfile />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/careers/:slug" element={<Vacancy />} />
+
+                {/* What We Offer */}
+                <Route path="/retreats" element={<Retreats />} />
+                <Route path="/retreats/:slug" element={<RetreatDetail />} />
+
+                {/* System */}
+                <Route path="/application-received" element={<ApplicationReceived />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
+                <Route path="/payment-declined" element={<PaymentDeclined />} />
                 
                 {/* Legal */}
                 <Route path="/privacy" element={<Privacy />} />
@@ -101,9 +120,6 @@ function AppContent({ isLoaded }: { isLoaded: boolean }) {
           </Layout>
         </motion.div>
       </AnimatePresence>
-      
-      {/* Speed Insights with route pattern for proper metrics grouping */}
-      <SpeedInsights route={getRoutePattern(location.pathname)} />
     </>
   );
 }
@@ -115,14 +131,7 @@ export default function App() {
     <BrowserRouter>
       <Preloader onComplete={() => setIsLoaded(true)} />
       <AppContent isLoaded={isLoaded} />
-      <Analytics 
-        beforeSend={(event) => {
-          // Normalize dynamic routes to patterns for better grouping
-          const url = new URL(event.url);
-          url.pathname = getRoutePattern(url.pathname);
-          return { ...event, url: url.toString() };
-        }}
-      />
+      <Toaster richColors position="top-center" />
     </BrowserRouter>
   );
 }

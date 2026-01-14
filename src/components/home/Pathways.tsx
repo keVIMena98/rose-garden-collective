@@ -3,26 +3,30 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
+import programsImg from '@/assets/IMG_3620.webp';
+import servicesImg from '@/assets/IMG_6929.webp';
+import karmaImg from '@/assets/IMG_5130.webp';
+
 const PATHWAYS = [
   {
-    title: "Our Story",
-    description: "Meet the founder and discover the roots of our collective vision.",
-    image: "https://images.unsplash.com/photo-1620153660954-7c7d425c8f65?q=80&w=800&auto=format&fit=crop",
-    link: "/story",
+    title: "Our Programs",
+    description: "Discover the roots of our collective vision.",
+    image: programsImg,
+    link: "/programs",
     color: "bg-secondary"
   },
   {
-    title: "Services",
+    title: "Our Services",
     description: "Explore our healing modalities, from Reiki to restorative yoga.",
-    image: "https://images.unsplash.com/photo-1760542758210-7f1be42027dc?q=80&w=800&auto=format&fit=crop",
+    image: servicesImg,
     link: "/services",
     color: "bg-primary"
   },
   {
-    title: "Karma Club",
-    description: "Join our membership program and plant seeds for community growth.",
-    image: "https://images.unsplash.com/photo-1605012555174-f01851e9410d?q=80&w=800&auto=format&fit=crop",
-    link: "/karma-club",
+    title: "Wellness Retreats",
+    description: "Join our wellness retreats and plant seeds for community growth.",
+    image: karmaImg,
+    link: "/wellness-retreats",
     color: "bg-[var(--accent)]"
   }
 ];
@@ -46,7 +50,7 @@ export function Pathways() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">Find Your Path</h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">Explore the different ways you can connect, heal, and grow with us.</p>
+          <p className="text-[24px] text-muted-foreground text-lg max-w-xl mx-auto">Explore the different ways you can connect, heal, and grow with us.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -81,7 +85,7 @@ export function Pathways() {
                     <h3 className="text-2xl font-serif font-bold text-primary mb-3 transition-colors">
                       {path.title}
                     </h3>
-                    <p className="text-muted-foreground mb-6 flex-1">
+                    <p className="text-[24px] text-muted-foreground mb-6 flex-1">
                       {path.description}
                     </p>
                     <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all">

@@ -84,7 +84,7 @@ export default function FAQ() {
                       <h2 className="font-serif text-4xl md:text-5xl leading-tight">
                         Frequently Asked Questions
                       </h2>
-                      <p className="text-primary-foreground/80 text-lg max-w-2xl">
+                      <p className="text-[24px] text-primary-foreground/80 text-lg max-w-2xl">
                         Everything you need to know about joining our collective and starting your healing journey.
                       </p>
                    </div>
@@ -112,7 +112,7 @@ export default function FAQ() {
                    <h3 className="font-serif text-3xl md:text-4xl text-primary">
                      More Questions? Contact Us!
                    </h3>
-                   <p className="text-lg opacity-90">
+                   <p className="text-[24px] text-lg opacity-90">
                      Can't find what you're looking for? We're here to help guide you.
                    </p>
                 </div>

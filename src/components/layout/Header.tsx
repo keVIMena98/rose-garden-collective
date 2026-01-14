@@ -55,7 +55,7 @@ export function Header() {
         {/* Left: Hamburger Menu (Manual Trigger) */}
         {/* Always interactive (pointer-events-auto) to allow toggling */}
         {/* Visible on top of everything including the menu */}
-        <div className="flex items-center justify-start w-[91px] md:w-[127px] z-[101] pointer-events-auto text-white">
+        <div className="flex items-center justify-start w-[91px] md:w-[127px] z-[101] pointer-events-auto text-white mix-blend-difference">
             <button 
               type="button"
               className={cn(
@@ -68,7 +68,7 @@ export function Header() {
                 setIsOpen(!isOpen);
               }}
             >
-              <MenuToggle isOpen={isOpen} color={isOpen ? "var(--primary-foreground)" : "#FFFFFF"} />
+              <MenuToggle isOpen={isOpen} color={isOpen ? "var(--foreground)" : "#FFFFFF"} />
             </button>
         </div>
             
@@ -84,13 +84,20 @@ export function Header() {
 
                 {/* Removed the internal close button as the header button now stays visible */}
 
-                <div className="p-6 flex flex-col h-full pt-[100px]">
+                {/* Content Container: Added bg-background (Light Blue) to cover parent's green */}
+                <div className="p-6 flex flex-col h-full pt-[100px] bg-background text-foreground">
                   <nav className="flex-1 flex flex-col gap-2">
+                    <Link 
+                      to="/" 
+                      className="block text-2xl font-sans text-foreground py-3 hover:text-foreground/80 transition-colors font-normal"
+                    >
+                      {/* <SquigglyText>Home</SquigglyText> */}
+                    </Link>
                     {NAV_LINKS.filter(link => link.name !== 'Donate Now').map((link) => (
                         link.subLinks ? (
                           <Accordion key={link.name} type="single" collapsible className="w-full border-none shadow-none">
                             <AccordionItem value={link.name} className="border-none">
-                              <AccordionTrigger className="text-2xl font-sans text-primary-foreground hover:no-underline py-2 font-normal hover:text-primary-foreground/80 transition-colors">
+                              <AccordionTrigger className="text-2xl font-sans text-foreground hover:no-underline py-2 font-normal hover:text-foreground/80 transition-colors">
                                 <SquigglyText>{link.name}</SquigglyText>
                               </AccordionTrigger>
                               <AccordionContent className="flex flex-col gap-3 pl-4 pt-2 pb-4">
@@ -98,7 +105,7 @@ export function Header() {
                                   <Link 
                                     key={sub.path} 
                                     to={sub.path} 
-                                    className="text-lg text-primary-foreground/80 hover:text-primary-foreground transition-colors font-light"
+                                    className="text-lg text-foreground/80 hover:text-foreground transition-colors font-light"
                                   >
                                     <SquigglyText>{sub.name}</SquigglyText>
                                   </Link>
@@ -110,7 +117,7 @@ export function Header() {
                           <Link 
                             key={link.name}
                             to={link.path} 
-                            className="block text-2xl font-sans text-primary-foreground py-3 hover:text-primary-foreground/80 transition-colors font-normal"
+                            className="block text-2xl font-sans text-foreground py-3 hover:text-foreground/80 transition-colors font-normal"
                           >
                             <SquigglyText>{link.name}</SquigglyText>
                           </Link>
@@ -119,14 +126,14 @@ export function Header() {
                   </nav>
 
                   <div className="mt-12 flex flex-col gap-4 mb-8">
-                    {/* Donate Button: Background Light Blue, Text Black (Foreground) */}
-                    <Button className="w-full rounded-full bg-background text-foreground hover:bg-card hover:text-card-foreground text-lg py-6 font-medium font-sans" asChild>
+                    {/* Donate Button: Teal (Primary) on Light Blue (Background) */}
+                    <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-card hover:text-card-foreground text-lg py-6 font-medium font-sans" asChild>
                       <Link to="/donate">Make a Donation</Link>
                     </Button>
                     
-                    <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-primary-foreground/70 text-sm font-light">
-                      <p className="mb-2 uppercase tracking-widest text-xs font-sans">Stay Connected</p>
-                      <p className="font-sans text-primary-foreground/90">hello@rosegardencollective.com</p>
+                    <div className="mt-8 pt-8 border-t border-foreground/20 text-foreground/70 text-sm font-light">
+                      <p className="text-[12px] mb-2 uppercase tracking-widest text-xs font-sans">Stay Connected</p>
+                      <p className="text-[24px] font-sans text-foreground/90">hello@rosegardencollective.com</p>
                     </div>
                   </div>
                 </div>
@@ -136,9 +143,11 @@ export function Header() {
         {/* Center/Right: Logo */}
         {/* Disable interaction when menu is open */}
         <div className={cn(
-            "z-[2] transition-all duration-300",
-            "w-[105px] h-[36px] relative", // Mobile
-            "md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 md:w-[140px] md:h-[53px]", // Desktop
+            "absolute transition-all duration-300",
+            "right-[30px] top-1/2 -translate-y-1/2", // Mobile: Right Aligned
+            "md:left-1/2 md:-translate-x-1/2 md:right-auto", // Desktop: Centered
+            "w-[105px] h-[36px]", // Mobile Dimensions
+            "md:w-[140px] md:h-[53px]", // Desktop Dimensions
             isOpen ? "pointer-events-none" : "pointer-events-auto"
         )}>
             <Link 

@@ -9,7 +9,7 @@ export const ServicesCTA = () => {
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-none text-primary">
             Your healing journey <br/> Starts here
           </h2>
-          <p className="font-sans text-lg md:text-xl max-w-xl mx-auto text-foreground/80 font-medium">
+          <p className="text-[24px] font-sans text-lg md:text-xl max-w-xl mx-auto text-foreground/80 font-medium">
              Transform your life through mindful practices that honor your unique path of recovery and growth.
           </p>
           <div className="pt-4">

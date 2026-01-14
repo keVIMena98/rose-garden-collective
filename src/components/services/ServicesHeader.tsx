@@ -7,7 +7,7 @@ export const ServicesHeader = () => {
        <h2 className="font-serif text-5xl md:text-7xl text-primary leading-[1.1]">
           Explore Our Service Offerings
        </h2>
-       <p className="font-sans font-medium text-lg md:text-xl text-foreground/70 max-w-xl mx-auto">
+       <p className="text-[24px] font-sans font-medium text-lg md:text-xl text-foreground/70 max-w-xl mx-auto">
           We meet people where they are, not where we think they should be.
        </p>
     </div>
