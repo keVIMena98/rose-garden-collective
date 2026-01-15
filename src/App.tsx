@@ -64,7 +64,7 @@ function AppContent({ isLoaded }: { isLoaded: boolean }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
-          className="relative z-10 w-full min-h-screen"
+          className="relative w-full min-h-screen"
         >
           {/* 
             The Transition Curtain (Pink Layer)

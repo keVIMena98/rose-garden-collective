@@ -45,7 +45,7 @@ export function Header() {
   const contentColor = "var(--foreground)";
 
   return (
-    <header className={cn(headerClass, "z-[999]")}>
+    <header className={cn(headerClass, "z-[1]")}>
       <div className={cn(
         "flex items-center justify-between",
         "w-full h-[64px] px-[30px]", // Mobile styles
