@@ -71,7 +71,7 @@ export function Header() {
                 setIsOpen(!isOpen);
               }}
             >
-              <MenuToggle isOpen={isOpen} color={isOpen ? "var(--foreground)" : "#FFFFFF"} />
+              <MenuToggle isOpen={isOpen} color="#FFFFFF" />
             </button>
         </div>
             
