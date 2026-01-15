@@ -55,7 +55,10 @@ export function Header() {
         {/* Left: Hamburger Menu (Manual Trigger) */}
         {/* Always interactive (pointer-events-auto) to allow toggling */}
         {/* Visible on top of everything including the menu */}
-        <div className="flex items-center justify-start w-[91px] md:w-[127px] z-[101] pointer-events-auto text-white mix-blend-difference">
+        <div className={cn(
+          "flex items-center justify-start w-[91px] md:w-[127px] z-[101] pointer-events-auto text-white",
+          !isOpen && "mix-blend-difference"
+        )}>
             <button 
               type="button"
               className={cn(

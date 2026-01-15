@@ -11,7 +11,7 @@ export function Footer() {
     { name: "Our Story", path: "/story" },
     { name: "Our Programs", path: "/programs" },
     { name: "Our Services", path: "/services" },
-    { name: "Wellness Retreats", path: "/wellness-retreats" },
+    { name: "Wellness Retreats", path: "/404" },
     { name: "Contact Us", path: "/contact" },
   ];
 

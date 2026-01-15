@@ -26,7 +26,7 @@ const PATHWAYS = [
     title: "Wellness Retreats",
     description: "Join our wellness retreats and plant seeds for community growth.",
     image: karmaImg,
-    link: "/wellness-retreats",
+    link: "/404",
     color: "bg-[var(--accent)]"
   }
 ];

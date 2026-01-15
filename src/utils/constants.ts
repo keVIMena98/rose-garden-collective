@@ -7,10 +7,10 @@ export const NAV_LINKS = [
     path: "/who-we-are", 
     subLinks: [
       { name: "Our Story", path: "/story" },
-      { name: "Our Founder's Story", path: "/founder-story" },
-      { name: "Our Care Team", path: "/care-team" },
-      { name: "Meet Our Teachers", path: "/teachers" },
-      { name: "Careers", path: "/careers" }
+      { name: "Our Founder's Story", path: "/404" },
+      { name: "Our Core Team", path: "/404" },
+      { name: "Meet Our Teachers", path: "/404" },
+      { name: "Careers", path: "/404" }
     ] 
   },
   { 
@@ -19,7 +19,7 @@ export const NAV_LINKS = [
     subLinks: [
       { name: "Our Programs", path: "/programs" },
       { name: "Our Services", path: "/services" },
-      { name: "Wellness Retreats", path: "/retreats" }
+      { name: "Wellness Retreats", path: "/404" }
     ] 
   },
   // { name: "Join The Karma Club", path: "/karma-club" },
