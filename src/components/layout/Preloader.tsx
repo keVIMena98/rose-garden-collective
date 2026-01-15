@@ -66,6 +66,9 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
     opacity: { duration: 1.0, delay: 1.5, ease: "linear" } // Fade out with swoop
   };
 
+  const isMobile = windowSize.width < 768;
+  const spiralY = isMobile ? windowSize.height * 0.4 : windowSize.height * 0.5;
+
   return (
     <motion.div 
       className="fixed inset-0 z-[200] overflow-hidden cursor-default"
@@ -85,7 +88,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
             <rect width="100%" height="100%" fill="white" />
             
             {/* 1. Center the Mask Group */}
-            <g style={{ transform: "translate(50vw, 50vh)" }}>
+            <g style={{ transform: `translate(${windowSize.width / 2}px, ${spiralY}px)` }}>
               
               {/* 2. Auto Spin (Continuous) */}
               <motion.g
@@ -165,8 +168,11 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
 
           {/* Center: FOREGROUND Spiral (The Green One) - Interactive */}
           <div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ pointerEvents: isRevealing ? "none" : "auto" }}
+            className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ 
+              top: spiralY,
+              pointerEvents: isRevealing ? "none" : "auto" 
+            }}
           >
               {/* Wrapper for hover/click area */}
               <div 
@@ -209,17 +215,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
               </div>
           </div>
 
-          {/* Mobile Only: Tap to Enter Cue (Since they can't hover) */}
-          <motion.div
-            className="md:hidden absolute top-[calc(50%-150px)] left-1/2 -translate-x-1/2 z-[25] pointer-events-none"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: isRevealing ? 0 : 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-              <p className="font-serif text-sm font-semibold tracking-widest uppercase text-[#7c3aed] whitespace-nowrap">
-                Tap to enter
-              </p>
-          </motion.div>
+
 
           {/* Bottom: Text and Copyright */}
           <motion.div 
@@ -235,6 +231,20 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
               </p>
           </motion.div>
       </div>
+
+      {/* Mobile Only: Tap to Enter Cue (Since they can't hover) */}
+      <motion.div
+        className="md:hidden absolute left-1/2 -translate-x-1/2 z-[30] pointer-events-none"
+        style={{ top: "calc(40% + 145px)" }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: isRevealing ? 0 : 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+          <p className="font-serif text-sm font-semibold tracking-widest uppercase text-secondary whitespace-nowrap">
+            Tap to enter
+          </p>
+      </motion.div>
+
     </motion.div>
   );
 }
