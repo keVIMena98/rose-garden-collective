@@ -56,8 +56,7 @@ export function Header() {
         {/* Always interactive (pointer-events-auto) to allow toggling */}
         {/* Visible on top of everything including the menu */}
         <div className={cn(
-          "flex items-center justify-start w-[91px] md:w-[127px] z-[101] pointer-events-auto text-white",
-          !isOpen && "mix-blend-difference"
+          "flex items-center justify-start w-[91px] md:w-[127px] z-[200] pointer-events-auto text-white mix-blend-difference"
         )}>
             <button 
               type="button"
@@ -78,7 +77,7 @@ export function Header() {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetContent 
                 side="left" 
-                className="w-full sm:max-w-none md:w-[25vw] bg-primary/80 backdrop-blur-sm text-primary-foreground border-r-0 p-0 overflow-y-auto [&>button]:hidden z-[50] duration-1000 data-[state=open]:duration-1000 data-[state=closed]:duration-1000 ease-in-out"
+                className="w-full sm:max-w-none md:w-[25vw] bg-background/50 backdrop-blur-sm text-primary-foreground border-r-0 p-0 overflow-y-auto [&>button]:hidden z-[50] duration-1000 data-[state=open]:duration-1000 data-[state=closed]:duration-1000 ease-in-out"
               >
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetDescription className="sr-only">
@@ -87,8 +86,8 @@ export function Header() {
 
                 {/* Removed the internal close button as the header button now stays visible */}
 
-                {/* Content Container: Added bg-background (Light Blue) to cover parent's green */}
-                <div className="p-6 flex flex-col h-full pt-[100px] bg-background text-foreground">
+                {/* Content Container: Added bg-transparent to respect parent opacity */}
+                <div className="p-6 flex flex-col h-full pt-[100px] bg-transparent text-foreground">
                   <nav className="flex-1 flex flex-col gap-2">
                     <Link 
                       to="/" 
