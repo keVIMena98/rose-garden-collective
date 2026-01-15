@@ -419,7 +419,7 @@
   }
 
   body {
-    background-color: var(--background);
+    background-color: var(--card);
     color: var(--foreground);
     font-family: var(--font-sans);
   }
