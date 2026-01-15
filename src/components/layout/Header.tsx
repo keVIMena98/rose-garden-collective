@@ -45,7 +45,7 @@ export function Header() {
   const contentColor = "var(--foreground)";
 
   return (
-    <header className={cn(headerClass, "z-[1]")}>
+    <header className={headerClass}>
       <div className={cn(
         "flex items-center justify-between",
         "w-full h-[64px] px-[30px]", // Mobile styles
@@ -56,7 +56,7 @@ export function Header() {
         {/* Always interactive (pointer-events-auto) to allow toggling */}
         {/* Visible on top of everything including the menu */}
         <div className={cn(
-          "flex items-center justify-start w-[91px] md:w-[127px] z-[1000] pointer-events-auto text-white",
+          "flex items-center justify-start w-[91px] md:w-[127px] z-[1002] pointer-events-auto text-white",
           !isOpen && "mix-blend-difference"
         )}>
             <button 
@@ -71,14 +71,14 @@ export function Header() {
                 setIsOpen(!isOpen);
               }}
             >
-              <MenuToggle isOpen={isOpen} color="#FFFFFF" />
+              <MenuToggle isOpen={isOpen} color={isOpen ? "var(--foreground)" : "#FFFFFF"} />
             </button>
         </div>
             
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetContent 
                 side="left" 
-                className="w-full sm:max-w-none md:w-[25vw] bg-transparent border-r-0 p-0 overflow-y-auto [&>button]:hidden z-[998] duration-1000 data-[state=open]:duration-1000 data-[state=closed]:duration-1000 ease-in-out shadow-none"
+                className="w-full sm:max-w-none md:w-[25vw] bg-transparent backdrop-blur-sm text-primary-foreground border-r-0 p-0 overflow-y-auto [&>button]:hidden z-[50] duration-1000 data-[state=open]:duration-1000 data-[state=closed]:duration-1000 ease-in-out"
               >
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <SheetDescription className="sr-only">
@@ -88,7 +88,7 @@ export function Header() {
                 {/* Removed the internal close button as the header button now stays visible */}
 
                 {/* Content Container: Added bg-background (Light Blue) to cover parent's green */}
-                <div className="p-6 flex flex-col h-full pt-[100px] bg-background/50 backdrop-blur-md text-foreground">
+                <div className="p-6 flex flex-col h-full pt-[100px] bg-background/80 text-foreground">
                   <nav className="flex-1 flex flex-col gap-2">
                     <Link 
                       to="/" 

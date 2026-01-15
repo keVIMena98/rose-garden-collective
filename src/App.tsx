@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { Toaster } from './components/ui/sonner';
 import { Layout } from './components/layout/Layout';
-import { Header } from './components/layout/Header';
 import { Preloader } from './components/layout/Preloader';
 import ScrollToTop from './components/layout/ScrollToTop';
 import TransitionDesktop from './imports/TransitionDesktop';
@@ -60,11 +59,10 @@ function AppContent({ isLoaded }: { isLoaded: boolean }) {
 
   return (
     <>
-      <Header />
       <AnimatePresence mode="wait">
         <motion.div
           key={location.pathname}
-          className="relative w-full min-h-screen"
+          className="relative z-10 w-full min-h-screen"
         >
           {/* 
             The Transition Curtain (Pink Layer)

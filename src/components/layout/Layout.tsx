@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Header } from './Header';
 import { Footer } from './Footer';
 
 import { SmoothScroll } from './SmoothScroll';
@@ -18,6 +19,8 @@ export function Layout({ children, enableScroll = true }: { children: React.Reac
   return (
     <div className="relative min-h-screen flex flex-col font-sans">
       {enableScroll && <SmoothScroll />}
+      
+      <Header />
       
       {/* Content wrapper */}
       <div className="relative z-10 flex flex-col min-h-screen">
