@@ -102,14 +102,14 @@ export function Mission() {
   const containerMaxWidth = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["1440px", "100%"]);
   const gap = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["16px", "0px"]);
   const mainWidth = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["26%", "100%"]);
-  const mainHeight = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["70vh", "calc(100vh - 32px)"]);
+  const mainHeight = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["70dvh", "calc(100dvh - 32px)"]);
   const sideWidth = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["19%", "0%"]);
   const colWidth = useTransform(scrollYProgress, [ANIM_START, ANIM_END], ["13%", "0%"]);
   const sideOpacity = useTransform(scrollYProgress, [ANIM_START, 0.5], [1, 0]);
 
   // --- MOBILE TRANSFORMS (Matching Figma Layout) ---
   const mobileMainWidth = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["188px", "calc(100vw - 32px)"]);
-  const mobileMainHeight = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["70vh", "calc(100vh - 32px)"]); // Adjusted start height for Image 5 aspect ratio
+  const mobileMainHeight = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["70dvh", "calc(100dvh - 32px)"]); // Adjusted start height for Image 5 aspect ratio
   const mobileGap = useTransform(mobileScrollYProgress, [ANIM_START, ANIM_END], ["16px", "0px"]);
   
   const mobileSideOpacity = useTransform(mobileScrollYProgress, [ANIM_START, 0.5], [1, 0]);

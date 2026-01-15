@@ -17,13 +17,13 @@ export function Layout({ children, enableScroll = true }: { children: React.Reac
   const isLegalPage = ['/privacy', '/terms'].includes(pathname);
 
   return (
-    <div className="relative min-h-screen flex flex-col font-sans">
+    <div className="relative min-h-[100dvh] flex flex-col font-sans">
       {enableScroll && <SmoothScroll />}
       
       <Header />
       
       {/* Content wrapper */}
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-10 flex flex-col min-h-[100dvh]">
         <main className={cn(
           "flex-1 w-full",
           isLegalPage ? "pt-[64px] md:pt-[90px]" : "pt-0"

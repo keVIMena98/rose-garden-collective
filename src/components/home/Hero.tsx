@@ -15,7 +15,7 @@ export function Hero() {
   const overlayOpacity = useTransform(scrollY, [0, 600], [0, 0.8]);
 
   return (
-    <section className="relative h-screen min-h-[100dvh] w-full flex flex-col justify-end z-0">
+    <section className="relative h-[100dvh] w-full flex flex-col justify-end z-0">
       {/* Background Video */}
       <motion.div 
         style={{ y: bgY }}
