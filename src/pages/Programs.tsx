@@ -11,6 +11,8 @@ import { GrainyOverlay } from '../components/layout/GrainyOverlay';
 import caysLogo from '../assets/cays-logo.png';
 import bcfLogo from '../assets/Breast-Cancer-Foundation-Logo-Darker-Gray.svg';
 import apfLogo from '../assets/alex-panton-foundation-logo.png';
+import arkLogo from '../assets/ARK_2023 logo _ closed.webp';
+import cigLogo from '../assets/cayman-islands-government-logo.png';
 import programsHeroImg from '../assets/IMG_3626.webp';
 
 // --- Data ---
@@ -18,7 +20,9 @@ import programsHeroImg from '../assets/IMG_3626.webp';
 const PARTNERS = [
   { name: "Breast Cancer Foundation", logo: bcfLogo },
   { name: "Alex Panton Foundation", logo: apfLogo },
-  { name: "CAYS Foundation", logo: caysLogo }
+  { name: "CAYS Foundation", logo: caysLogo },
+  { name: "Acts of Random Kindness", logo: arkLogo },
+  { name: "Cayman Islands Government", logo: cigLogo }
 ];
 
 // --- Components ---
@@ -143,13 +147,15 @@ export default function Programs() {
 
   // Carousel Settings
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    speed: 3000,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    pauseOnHover: false,
     arrows: false,
     responsive: [
       {
